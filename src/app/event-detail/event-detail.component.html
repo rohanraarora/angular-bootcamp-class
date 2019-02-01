@@ -14,5 +14,23 @@
   <div>
       Registrations Count {{event.registrations.length}}
   </div>
+
+
+  <div id="form">
+    <div id="field">
+        <input [(ngModel)]="name" />
+        {{ name }}
+    </div>
+
+    <div id="field">
+        <input [(ngModel)]="email"/>
+        {{ email }}
+    </div>
+
+    <div>
+      <button (click)="register()">Register</button>
+    </div>
+    
+  </div>
   
 </div>

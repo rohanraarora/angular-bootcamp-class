@@ -20,7 +20,7 @@ export class EventsComponent implements OnInit {
     // function(response){ this.}
     // response => {}
     this.isLoading = true;
-    this.httpClient.get<Event[]>('http://localhost:8000/api/events')
+    this.httpClient.get<Event[]>('http://35.154.129.133:8000/api/events')
     .subscribe(response => {
       this.events = response;
       console.log('Response', response);
