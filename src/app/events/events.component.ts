@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from '../models/event';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -8,28 +10,28 @@ import { Event } from '../models/event';
 })
 export class EventsComponent implements OnInit {
 
-  events: Event[] = [
-    {
-      title: 'Event 1',
-      description: 'Description 1'
-    },
-    {
-      title: 'Event 2',
-      description: 'Description 1'
-    },
-    {
-      title: 'Event 3',
-      description: 'Description 1'
-    },
-    // {
-    //   title: 'Event 4',
-    //   description: 'Description 1'
-    // }
-  ];
-
-  constructor() { }
+  isLoading = false;
+  events: Event[] = [];
+  title = 'abc';
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
+    console.log('ABCD');
+    // function(response){ this.}
+    // response => {}
+    this.isLoading = true;
+    this.httpClient.get<Event[]>('http://localhost:8000/api/events')
+    .subscribe(response => {
+      this.events = response;
+      console.log('Response', response);
+      this.isLoading = false;
+    });
+    console.log('Hello World!');
+  }
+
+  onEventClick(event: Event) {
+    // alert(event._id);
+    this.router.navigate(['/events', event._id]);
   }
 
 }

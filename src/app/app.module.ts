@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,6 +11,7 @@ import { AboutComponent } from './about/about.component';
 import { EventsComponent } from './events/events.component';
 import { TeamComponent } from './team/team.component';
 import { EventCardComponent } from './event-card/event-card.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 const routes: Routes = [
 
@@ -31,6 +33,10 @@ const routes: Routes = [
     component: EventsComponent
   },
   {
+    path: 'events/:eventId',
+    component: EventDetailComponent
+  },
+  {
     path: 'team',
     component: TeamComponent
   }
@@ -45,11 +51,13 @@ const routes: Routes = [
     AboutComponent,
     EventsComponent,
     TeamComponent,
-    EventCardComponent
+    EventCardComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
